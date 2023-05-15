@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../resources/css/sesion/registrar.css">
+    <script  src="../../resources/js/sesion.js" ></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="contenedor-reg">
+        <label></label>
+        <form action="#">
+            <div class="field nombre">
+                <input placeholder="Nombre Completo"/>
+                <div class="error error-txt">Nombre Completo no puede estar vacio</div>
+
+            </div>
+            <div class="field email">
+                <input placeholder="Email"/>
+                <div class="error error-txt">Email no puede estar vacio</div>
+
+            </div>
+            <div class="field rut">
+                <input placeholder="Rut"/>
+                <div class="error error-txt">Rut no puede estar vacio</div>
+            </div>
+            <div class="field fechan">
+                <input placeholder="Fecha Nacimiento"/>
+                <div class="error error-txt">Fecha no puede estar vacio</div>
+            </div>
+            <div class="field password">
+                <input type="password" placeholder="Password"/>
+                <div class="error error-txt">Password no puede estar vacio</div>
+            </div>
+            <div class="field password2">
+                <input type="password" placeholder="Reingresar Password"/>
+                <div class="error error-txt">Password no puede estar vacio</div>
+            </div>
+            <input type="submit" value="Registrar" onclick="registrarUsuario()" ></button>
+            
+        </form>
+    </div>
+</body>
+</html>
