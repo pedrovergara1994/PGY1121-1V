@@ -117,9 +117,8 @@ const login = () => {
     pInput = pField.querySelector("input");
     
     
-    form.onsubmit = (e)=>{
-      e.preventDefault(); //preventing from form submitting
-      //if email and password is blank then add shake class in it else call specified function
+    form.onsubmit = (e) => {
+      e.preventDefault(); 
       (eInput.value == "") ? eField.classList.add("shake", "error") : checkEmail();
       (pInput.value == "") ? pField.classList.add("shake", "error") : checkPass();
     
@@ -134,26 +133,24 @@ const login = () => {
       pInput.onkeyup = ()=>{checkPass();} //calling checkPassword function on pass input keyup
   
   
-      function checkEmail(){ //checkEmail function
-         //pattern for validate email
-        if(!eInput.value.match(pattern)){ //if pattern not matched then add error and remove valid class
+      function checkEmail() { 
+        if (!eInput.value.match(pattern)) { 
           eField.classList.add("error");
           eField.classList.remove("valid");
           let errorTxt = eField.querySelector(".error-txt");
-          //if email value is not empty then show please enter valid email else show Email can't be blank
           (eInput.value != "") ? errorTxt.innerText = "Ingresa un email valido" : errorTxt.innerText = "Email no puede estar vacio";
-        }else{ //if pattern matched then remove error and add valid class
+        } else { 
           eField.classList.remove("error");
           eField.classList.add("valid");
         }
       }
   
   
-      function checkPass(){ //checkPass function
-        if(pInput.value == ""){ //if pass is empty then add error and remove valid class
+      function checkPass() {
+        if (pInput.value == "") { 
           pField.classList.add("error");
           pField.classList.remove("valid");
-        }else{ //if pass is empty then remove error and add valid class
+        }else { 
           pField.classList.remove("error");
           pField.classList.add("valid");
         }
