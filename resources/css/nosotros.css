@@ -1,0 +1,10 @@
+div{
+    background-image: url(/resources/img/logo2.png );
+    width: 50%;
+    right: 50%;
+    height: 50%;
+}
+
+body{
+    background-color: rgb(205, 255, 243);
+}
