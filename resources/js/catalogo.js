@@ -1,104 +1,136 @@
-
-let cantidad = 0;
-
-const verLista = () => {
-    //listaProductos.map(d => console.log(d))
-}
-
-
-
-let btnVer = (elem) => {
-    return '<button id="btnVer" onclick="ir('+elem+')">Ver</button>'
-}
-
-
-function ir(donde) {
-    console.log(JSON.stringify(donde))
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const carritoIcon = document.getElementById('carrito-icon');
+  const carritoOverlay = document.getElementById('carrito-overlay');
+  const listaCarrito = document.getElementById('lista-carrito');
+  const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+  const catalogo = document.getElementById('catalogo');
+  let carrito = [];
+  function cerrarCarrito() {
+    carritoOverlay.style.display = 'none';
+  }
+  
+  carritoIcon.addEventListener('click', function() {
+    carritoOverlay.style.display = 'flex';
+  });
 
 
-const agregar = (id) => {
-    console.log('agregar al carrito')
-    const lista = JSON.parse(window.localStorage.getItem('carrito'))
-    let existe = false;
-    const data = JSON.parse(window.localStorage.getItem('data'))
-    const producto = data.find(a => a.id == id);
-    console.log(producto)
-    this.cantidad = this.cantidad !== undefined && this.cantidad !== null ? this.cantidad : 1;
-    console.log('cantidad: ' + this.cantidad)
-    if (lista !== null) {
-        console.log(lista);
-        lista.forEach(element => {
-            if (element.producto.id == id) {
-                existe = true;
-                const cant = parseInt(element.cantidad);
-                const cantMas = parseInt(this.cantidad);
-                element.cantidad =  cant+ cantMas;
-            }
-        });
-        if (!existe) {
-            const data = JSON.parse(window.localStorage.getItem('data'))
-            const producto = data.find(a => a.id == id);
-            lista.push({producto: producto, cantidad: parseInt(this.cantidad)});    
-        }
-        window.localStorage.setItem('carrito', JSON.stringify(lista));
-
-    } else {
-        console.log('Lista es: ' + lista)
-        const c = [{producto: producto, cantidad: parseInt(this.cantidad)}]
-        console.log(c)
-        window.localStorage.setItem('carrito', JSON.stringify(c));
-    }    
-    document.getElementsByClassName("cant").value = 1;
-    document.querySelectorAll("txtCantidad").forEach(q => q.value = 1);
-
-
-    //this.cantidad = 1;
-} 
-
-const nuevaCantidadEs = (n) => {
-    console.log(n)
-    this.cantidad = n;
-    if (n == null || n == undefined) {
-        alert('La cantidad debe de ser al menos de 1')
+  const cerrarCarritoBtn = document.getElementById('cerrar-carrito');
+  cerrarCarritoBtn.addEventListener('click', cerrarCarrito);
+  
+  carritoOverlay.addEventListener('click', function(e) {
+    if (e.target.id === 'carrito-overlay') {
+      cerrarCarrito();
     }
-}
+  });
+  function formatoPrecio(precio) {
+    const opciones = {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    };
+    return precio.toLocaleString(undefined, opciones);
+  }
+  function actualizarCarrito() {
+    listaCarrito.innerHTML = '';
 
+    carrito.forEach(function(producto) {
+      const { nombre, precio, cantidad, imagen } = producto;
 
-const focus = () => {
-    this.cantidad = 1;
-}
+      const productoHTML = document.createElement('li');
+      productoHTML.innerHTML = `
+        <img src="${imagen}" alt="${nombre}">
+        <div>
+          <h4>${nombre}</h4>
+          <p>Precio: ${precio}</p>
+          <p>Cantidad: ${cantidad}</p>
+          <button class="eliminar-producto" data-nombre="${nombre}">Eliminar</button>
+        </div>
+      `;
 
-
-
-
-const verCarrito = () => {
-    listaCarrito.forEach(element => {
-        console.log(element.nombre)
+      listaCarrito.appendChild(productoHTML);
     });
-}
+    
+    document.getElementById('carrito-cantidad').textContent = carrito.length;
+    document.getElementById('total-carrito').textContent = `Total: $${formatoPrecio(calcularTotal())}`;
+  }
 
+  function calcularTotal() {
+    let total = 0;
 
-listaCarrito= [];
+    carrito.forEach(function(producto) {
+      const { precio, cantidad } = producto;
+      total += precio * cantidad;
+    });
 
+    return total;
+  }
 
-const lista = JSON.parse(window.localStorage.getItem('data'));
+  function agregarProducto(e) {
+    if (e.target.classList.contains('agregar-carrito')) {
+      const producto = e.target.parentElement;
+      const nombre = producto.querySelector('h3').textContent;
+      const precio = parseFloat(producto.querySelector('p').textContent.replace('Precio: $', ''));
+      const imagen = producto.querySelector('img').getAttribute('src');
 
-console.log(lista);
+      const existe = carrito.some(function(producto) {
+        return producto.nombre === nombre;
+      });
 
-for (let elem of lista) {
-    document.querySelector("#catalogo").innerHTML += 
-    '<form>' +
-        '<div>' +
-            "<li key='"+elem.id+"'>"+
-            elem.nombre + ' $' +  elem.precio+ 'ver es : '+ elem.ver +  "<img width='30%' height='30%' src='"+ elem.img +"'"+
-            ' onclick="ir('+elem.ver+')"> </img>'+
-            //'<inpput type="submit" id="btnVer" onclick="ir('+elem.ver+')">Ver</button>' +
-            '<input type="submit" id="btnAgregar" value="Agregar" onclick="agregar('+elem.id+')"></input>'+
-            '<input class="cant" type="number" id="txtCantidad" onchange="nuevaCantidadEs(value)" onblur="focus()" >Cantidad</input>'+
-            "</li>" +
-        '</div>' +
-    '</form>';
-}
+      if (existe) {
+        const productos = carrito.map(function(producto) {
+          if (producto.nombre === nombre) {
+            producto.cantidad++;
+            return producto;
+          } else {
+            return producto;
+          }
+        });
 
+        carrito = [...productos];
+      } else {
+        carrito.push({
+          nombre,
+          precio,
+          cantidad: 1,
+          imagen
+        });
+      }
 
+      actualizarCarrito();
+    }
+  }
+
+  function eliminarProducto(e) {
+    if (e.target.classList.contains('eliminar-producto')) {
+      const nombre = e.target.dataset.nombre;
+
+      const productos = carrito.filter(function(producto) {
+        return producto.nombre !== nombre;
+      });
+
+      carrito = [...productos];
+
+      actualizarCarrito();
+    }
+  }
+
+  function vaciarCarrito() {
+    carrito = [];
+    actualizarCarrito();
+  }
+
+  carritoIcon.addEventListener('click', function() {
+    carritoOverlay.style.display = 'flex';
+  });
+
+  carritoOverlay.addEventListener('click', function(e) {
+    if (e.target.id === 'carrito-overlay') {
+      carritoOverlay.style.display = 'none';
+    }
+  });
+
+  catalogo.addEventListener('click', agregarProducto);
+
+  listaCarrito.addEventListener('click', eliminarProducto);
+
+  vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+})

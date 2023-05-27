@@ -1,27 +1,390 @@
-.contenedor {
-    padding: 0;
-    margin: 0;
-    background-color: bisque;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+} 
+@media screen and (max-width: 767px) {
+ h1 {
+    font-size: 20px;
+  }
+  .navbar {
+    flex-direction: column;
+  }
+  }
+@media screen and (min-width: 768px) and (max-width: 991px) {}
+
+
+@media screen and (min-width: 992px) {
+  }
+.navbar {
+  display: flex;
+  margin-right: 10px;
 }
 
-
-.caja {
-    width: 30%;
-    height: 30%;
+.logo {
+  margin-left: 1px;
 }
 
-li span {
-    color:#fff;
-    border:1px solid #ccc;
-    background-color:#808080;
-    margin-right:10px;
-    padding: 0 2px;
-    border-radius:4px;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    -o-border-radius:4px;
-    border-radius:4px;
-    font-weight:bold;
-    font-size:0.8em;
-    cursor:pointer;
+.logo a {
+  text-decoration: none;
+  color: #8c1fb0;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.navbar a {
+  display: block;
+  padding: 20px;
+  color: #302323;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background: #3ec9b6;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #3ec9b6;
+}
+
+header {
+  background-color: #8c1fb0;
+  color: #fff;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+  text-align: center;
+}
+
+#carrito-icon {
+  position: relative;
+  margin-right: 30px;
+}
+
+#carrito-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+#carrito-cantidad {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: rgb(255, 255, 255);
+  color: #fff;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#carrito-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#carrito {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
+}
+
+#carrito h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+#lista-carrito {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-carrito li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#lista-carrito li img {
+  width: 40px;
+  height: 40px;
+}
+
+#total-carrito {
+  font-weight: bold;
+}
+
+#vaciar-carrito {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#catalogo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  position: relative;
+  top: 80px;
+  left: 600px;
+  
+  
+}
+
+.producto {
+ 
+  
+  padding: 10px;
+  text-align: center;
+}
+
+.producto img {
+  width: 150px;
+  height: 150px;
+}
+
+.agregar-carrito {
+  background-color: #008000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}#carrito-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+#carrito-icon .fas {
+  font-size: 24px;
+}
+
+#carrito-icon #carrito-cantidad {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(33, 189, 228);;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+}
+
+#carrito-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#carrito {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
+}
+
+#carrito h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+#lista-carrito {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-carrito li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#lista-carrito li img {
+  width: 40px;
+  height: 40px;
+}
+
+#total-carrito {
+  font-weight: bold;
+}
+
+#vaciar-carrito {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#vaciar-carrito:hover {
+  background-color: #cc0000;
+}
+
+#catalogo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.producto {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.producto h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.producto p {
+  margin-bottom: 10px;
+}
+
+.agregar-carrito {
+  background-color: #8c1fb0;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.agregar-carrito:hover {
+  background-color: #0056b3;
+}
+.footer {
+  background: #3f0a53;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.footer h3 {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 8px;
+}
+
+.footer ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer .social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.footer .social-icons li {
+  margin-right: 10px;
+}
+
+.footer .social-icons a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: #fff;
+}
+.footer {
+  margin-top: auto;
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
 }

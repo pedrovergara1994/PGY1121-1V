@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="resources/css/catalogo.css">
+  <script src="resources/js/catalogo.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a class="logo" href="index.html">
+       <img src="resources/img/Logo2.png" alt="logo" width="60" height="60">
+     </a>
+   </div>
+   <nav class="navbar">
+      <a href="index.html">Inicio</a>
+    </nav>
+    <div id="carrito-icon">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="carrito-cantidad"></span>
+    </div>
+  </header>
+  
+  <div id="carrito-overlay">
+    <div id="carrito">
+      <h2>Tu carrito de compras</h2><button id="cerrar-carrito">Cerrar</button>
+      <ul id="lista-carrito"></ul>
+      <p id="total-carrito"></p>
+      <button id="vaciar-carrito">Vaciar Carrito</button>
+    </div>
+  </div>
+  <h1>Productos Disponibles</h1>
+  <section id="catalogo">
+    
+    <div class="producto">
+      <img src="resources/img/guitarra 2.png" alt="Producto 1">
+      <h3>guitarra</h3>
+      <p>Precio: $340000</p>
+      <button class="agregar-carrito" data-nombre="Guitarra" data-precio="240000">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="resources/img/saxo.png" alt="Producto 2">
+      <h3>Saxophone</h3>
+      <p>Precio: $430000</p>
+      <button class="agregar-carrito" data-nombre="Saxophone" data-precio="430000">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="resources/img/bateria.jpeg" alt="Producto 3">
+      <h3>Bateria</h3>
+      <p>Precio: $860000</p>
+      <button class="agregar-carrito" data-nombre="bateria" data-precio="860000">Agregar al carrito</button>
+    </div>
+  </section>
+  
+</body>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Enlaces</h3>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="Nosotros.html">Acerca de nosotros</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> 5 Norte </li>
+          <li><i class="fas fa-phone"></i> +56956101733</li>
+          <li><i class="fas fa-envelope"></i> Solomusica.ayuda@gmail.com</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Síguenos</h3>
+        <ul class="social-icons">
+          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Derechos de autor &copy; 2023 | Solo Musica</p>
+    </div>
+  </div>
+</footer>
+</html>

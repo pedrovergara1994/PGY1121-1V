@@ -117,40 +117,41 @@ const login = () => {
     pInput = pField.querySelector("input");
     
     
-    form.onsubmit = (e) => {
+    form.onsubmit = (e)=>{
       e.preventDefault(); 
       (eInput.value == "") ? eField.classList.add("shake", "error") : checkEmail();
       (pInput.value == "") ? pField.classList.add("shake", "error") : checkPass();
     
     
-      setTimeout(()=>{ //remove shake class after 500ms
+      setTimeout(()=>{ 
         eField.classList.remove("shake");
         pField.classList.remove("shake");
       }, 500);
   
   
-      eInput.onkeyup = ()=>{checkEmail();} //calling checkEmail function on email input keyup
-      pInput.onkeyup = ()=>{checkPass();} //calling checkPassword function on pass input keyup
+      eInput.onkeyup = ()=>{checkEmail();} 
+      pInput.onkeyup = ()=>{checkPass();} 
   
   
-      function checkEmail() { 
-        if (!eInput.value.match(pattern)) { 
+      function checkEmail(){ 
+        if(!eInput.value.match(pattern)){ 
           eField.classList.add("error");
           eField.classList.remove("valid");
           let errorTxt = eField.querySelector(".error-txt");
+          
           (eInput.value != "") ? errorTxt.innerText = "Ingresa un email valido" : errorTxt.innerText = "Email no puede estar vacio";
-        } else { 
+        }else{ 
           eField.classList.remove("error");
           eField.classList.add("valid");
         }
       }
   
   
-      function checkPass() {
-        if (pInput.value == "") { 
+      function checkPass(){ 
+        if(pInput.value == ""){ 
           pField.classList.add("error");
           pField.classList.remove("valid");
-        }else { 
+        }else{ 
           pField.classList.remove("error");
           pField.classList.add("valid");
         }

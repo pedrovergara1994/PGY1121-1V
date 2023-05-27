@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     height: 63px;
-    background: #171717;
+    background: #8c1fb0;
     position: fixed;
     width: 100%;
     z-index: 100;
@@ -24,4 +24,7 @@
 
 .navbar a:hover {
     background: #3f3f3f;
+}
+.head {
+    background: #8c1fb0;  
 }
